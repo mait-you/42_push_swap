@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:27 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 21:53:12 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:40:15 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 	while (i < ac)
 	{
 		tmp_args = ft_split(av[i], ' ');
-		if (!tmp_args)
+		if (!tmp_args || tmp_args[0] == 0)
 			return (free_args(tmp_args), 1);
 		j = 0;
 		while (tmp_args[j])
@@ -75,14 +75,12 @@ int	main(int ac, char **av)
 
 	stack_a = ft_new_stk();
 	stack_b = ft_new_stk();
-	if (ac < 2 || (ac == 2 && av[0][0] == '\0'))
-		return (ft_printf("Error\n"), 1);
+	if (ac < 2)
+		return (1);
 	if (ft_get_and_chek_args(ac, av, stack_a) || stack_a->size <= 0)
-		return (free_nod(stack_a), free_nod(stack_b), ft_printf("Error\n"), 1);
+		return (free_nod(stack_a), free_nod(stack_b), write(2, "Error\n", 6), 1);
 	if (!ft_is_stack_sorted(stack_a))
-	{
 		sort_stack(stack_a, stack_b);
-	}
 	free_nod(stack_a);
 	free_nod(stack_b);
 	return (0);

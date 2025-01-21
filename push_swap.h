@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 22:28:37 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:45:05 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,26 @@
 #  define PRINT 1
 # endif
 
+typedef struct s_best_moves
+{
+	int			ra_count;
+	int			rb_count;
+	int			rr_count;
+	int			rra_count;
+	int			rrb_count;
+	int			rrr_count;
+	int			total_cost;
+}				t_best_moves;
+
 // node struct 
 typedef struct s_node
 {
-	long			num;
+	int				num;
 	int				position;
 	int				price;
 	int				direction;
-	int				best_move;
-	struct s_node	*f_target_nod;
+	t_best_moves	*best_move;
+	// struct s_node	*f_target_nod;
 	struct s_node	*a_target_nod;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -49,15 +60,16 @@ typedef struct s_top_five
 	t_node			*five;
 }					t_top_five;
 
+
 // top five numbers in stack
-typedef struct s_bottom_five
-{
-	t_node			*one;
-	t_node			*two;
-	t_node			*three;
-	t_node			*four;
-	t_node			*five;
-}					t_bottom_five;
+// typedef struct s_bottom_five
+// {
+// 	t_node			*one;
+// 	t_node			*two;
+// 	t_node			*three;
+// 	t_node			*four;
+// 	t_node			*five;
+// }					t_bottom_five;
 
 // stack struct
 typedef struct s_stack
@@ -65,7 +77,6 @@ typedef struct s_stack
 	int				size;
 	int				middle_pos;
 	t_top_five		*top_five;
-	t_bottom_five	*bottom_five;
 	t_node			*top;
 	t_node			*bottom;
 }					t_stack;
@@ -75,7 +86,8 @@ void			free_nod(t_stack *stack);
 void			free_args(char **args);
 t_node			*ft_new_nod(int data);
 t_top_five		*ft_new_top_five(void);
-t_bottom_five	*ft_new_bottom_five(void);
+// t_bottom_five	*ft_new_bottom_five(void);
+t_best_moves	*ft_new_best_moves(void);
 t_stack			*ft_new_stk(void);
 int				ft_add_nod_to_stk(t_stack *stack, t_node *new_nod);
 int				ft_is_stack_sorted(t_stack *stack_a);
@@ -85,13 +97,14 @@ t_node			*ft_get_biggest_nod(t_stack *stack);
 t_node			*ft_get_middle_nod(t_stack *stack);
 int				ft_get_top_5_nod(t_stack *stack);
 int				ft_is_top_5(t_stack *stack, t_node *nod);
-int				ft_get_bottom_5_nod(t_stack *stack);
-int				ft_is_bottom_5(t_stack *stack, t_node *nod);
+// int				ft_get_bottom_5_nod(t_stack *stack);
+// int				ft_is_bottom_5(t_stack *stack, t_node *nod);
 int				ft_get_f_target(t_node *tmp_nod, t_stack *stack_b, \
 								t_stack *stack_a);
 int				ft_get_a_target(t_node *tmp_nod, t_stack *stack_a);
 int				ft_update_target(t_stack *stack_a, t_stack *stack_b);
 int				sort_a(t_stack *stack_a);
+int				double_r(t_best_moves *bm);
 
 void			print_sort_stack(const char *stack_name, t_stack *stack);
 void			print_stack(const char *stack_name, t_stack *stack);

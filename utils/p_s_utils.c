@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:14:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/18 11:09:29 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:44 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_nod(t_stack *stack)
 		tmp_nod = next;
 	}
 	free(stack->top_five);
-	free(stack->bottom_five);
+	// free(stack->bottom_five);
 	free(stack);
 }
 
@@ -58,20 +58,35 @@ int	ft_is_stack_sorted(t_stack *stack_a)
 	return (1);
 }
 
+int bm_total(t_best_moves *bm)
+{
+	bm->total_cost = bm->ra_count + bm->rb_count + bm->rr_count + bm->rra_count + bm->rrb_count + bm->rrr_count;
+	return (0);
+}
+
 int	ft_update_target(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*tmp_nod;
+	t_node			*tmp_nod;
+	t_best_moves	*tmp_bm;
 
 	tmp_nod = stack_b->top;
 	while (tmp_nod)
 	{
-		if (ft_is_bottom_5(stack_b, tmp_nod))
-		{
-			ft_get_f_target(tmp_nod, stack_b, stack_a);
-			ft_get_a_target(tmp_nod, stack_a);
-			tmp_nod->best_move = tmp_nod->a_target_nod->num - \
-			tmp_nod->f_target_nod->num;
-		}
+		// ft_get_f_target(tmp_nod, stack_b, stack_a);
+		ft_get_a_target(tmp_nod, stack_a);
+		tmp_bm = ft_new_best_moves();
+		if (tmp_nod->direction == 1)
+			tmp_bm->rb_count = tmp_nod->price;
+		else
+			tmp_bm->rrb_count = tmp_nod->price;
+		if (tmp_nod->a_target_nod->direction == 1)
+			tmp_bm->ra_count = tmp_nod->a_target_nod->price;
+		else
+			tmp_bm->rra_count = tmp_nod->a_target_nod->price;
+		double_r(tmp_bm);
+		bm_total(tmp_bm);
+		tmp_nod->best_move = tmp_bm;
+		tmp_bm = NULL;
 		tmp_nod = tmp_nod->next;
 	}
 	return (0);
@@ -92,6 +107,23 @@ int	sort_a(t_stack *stack_a)
 	else if (direction == 1)
 		while (price-- > 0)
 			ft_ra(stack_a, PRINT);
+	return (0);
+}
+
+int double_r(t_best_moves *bm)
+{
+	while (bm->ra_count > 0 && bm->rb_count > 0)
+	{
+		bm->ra_count--;
+		bm->rb_count--;
+		bm->rr_count++;
+	}
+	while (bm->rra_count > 0 && bm->rrb_count > 0)
+	{
+		bm->rra_count--;
+		bm->rrb_count--;
+		bm->rrr_count++;
+	}
 	return (0);
 }
 
@@ -132,10 +164,16 @@ void print_stack__(const char *stack_name, t_stack *stack)
 	{
 		ft_printf("position :\033[33m%d\033[0m ->num :\033[36m[%d]\033[0m direction :\033[33m%d\033[0m price :\033[33m%d\033[0m ", \
 		tmp_nod->position, tmp_nod->num, tmp_nod->direction, tmp_nod->price);
-		if (ft_is_bottom_5(stack, tmp_nod))
-			ft_printf("f_target :\033[33m%d\033[0m a_target :\033[33m%d\033[0m best_move :\033[33m%d\033[0m\n", tmp_nod->f_target_nod->num, tmp_nod->a_target_nod->num, tmp_nod->best_move);
-		else
-			ft_printf("target :%s\n", tmp_nod->f_target_nod);
+		ft_printf("a_target :\033[33m%d\033[0m\n", tmp_nod->a_target_nod->num);
+		
+		ft_printf("rb_count[\033[32m%d\033[0m] ", tmp_nod->best_move->rb_count);
+		ft_printf("rrb_count[\033[32m%d\033[0m] ", tmp_nod->best_move->rrb_count);
+		ft_printf("ra_count[\033[32m%d\033[0m] ", tmp_nod->best_move->ra_count);
+		ft_printf("rra_count[\033[32m%d\033[0m] ", tmp_nod->best_move->rra_count);
+		ft_printf("rr_count[\033[32m%d\033[0m] ", tmp_nod->best_move->rr_count);
+		ft_printf("rrr_count[\033[32m%d\033[0m]", tmp_nod->best_move->rrr_count);
+		ft_printf("=>total_cost[\033[34m%d\033[0m] \n", tmp_nod->best_move->total_cost);
 		tmp_nod = tmp_nod->next;
 	}
 }
+

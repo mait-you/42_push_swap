@@ -6,42 +6,47 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:48:13 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/18 11:10:32 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:05:28 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int smart_rotate_a(t_stack *stack_a, int direction, int price)
+int ft_smart_move(t_stack *stack_b, t_best_moves **bm)
 {
-	if (direction == -1)
-		while (price-- > 0)
-			ft_rra(stack_a, PRINT);
-	else if (direction == 1)
-		while (price-- > 0)
-			ft_ra(stack_a, PRINT);
+	t_node			*tmp_nod;
+
+	tmp_nod = stack_b->top;
+	*bm = tmp_nod->best_move;
+	while (tmp_nod)
+	{
+		if ((*bm)->total_cost == 0 || (*bm)->total_cost == 1)
+			return (0);
+		if (tmp_nod->best_move->total_cost < (*bm)->total_cost)
+			*bm = tmp_nod->best_move;
+		tmp_nod = tmp_nod->next;
+	}
 	return (0);
 }
 
-int ft_smart_move(t_stack *stack_b, t_stack *stack_a)
+int ft_aplyy_moves(t_stack *stack_b, t_stack *stack_a, t_best_moves *bm)
 {
-	t_node	*top_b_nod;
-	t_node	*bot_b_nod;
-	int		target_price;
-	int		target_direction;
-
-	top_b_nod = stack_b->top;
-	bot_b_nod = stack_b->bottom;
-	target_price = top_b_nod->a_target_nod->price;
-	target_direction = top_b_nod->a_target_nod->direction;
-	if (top_b_nod->best_move == 0)
-		return (smart_rotate_a(stack_a, target_direction, target_price));
-	if (bot_b_nod->best_move == 0)
-		return (smart_rotate_a(stack_a, target_direction, target_price));
-	smart_rotate_a(stack_a, target_direction, target_price);
+	while (bm->rr_count-- > 0)
+		ft_rr(stack_a, stack_b);
+	while (bm->rrr_count-- > 0)
+		ft_rrr(stack_a, stack_b);
+	while (bm->rb_count-- > 0)
+		ft_rb(stack_b, PRINT);
+	while (bm->rrb_count-- > 0)
+		ft_rrb(stack_b, PRINT);
+	while (bm->ra_count-- > 0)
+		ft_ra(stack_a, PRINT);
+	while (bm->rra_count-- > 0)
+		ft_rra(stack_a, PRINT);
+	free(bm);
+	ft_pa(stack_b, stack_a, PRINT);
 	return (0);
 }
-
 
 int ft_push_middle(t_stack *stack_a, t_stack *stack_b)
 {
@@ -59,15 +64,12 @@ int ft_push_middle(t_stack *stack_a, t_stack *stack_b)
 	return (ft_pb(stack_a, stack_b, PRINT));
 }
 
-// Quick Sort
 int push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*pivot;
 
 	ft_memset(stack_a->top_five, 0, sizeof(t_top_five));
 	ft_get_top_5_nod(stack_a);
-	ft_memset(stack_a->bottom_five, 0, sizeof(t_bottom_five));
-	ft_get_bottom_5_nod(stack_a);
 	ft_push_middle(stack_a, stack_b);
 	pivot = stack_b->top;
 	while(stack_a->size > 5)
@@ -88,29 +90,13 @@ int push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 
 int push_quick_sort_a(t_stack *stack_b, t_stack *stack_a)
 {
-	while (stack_b->size > 5)
+	t_best_moves *bm;
+
+	while (stack_b->size > 0) 
 	{
-		if (ft_is_bottom_5(stack_b, stack_b->top))
-		{
-			print_stack("stack_a", stack_a);
-			print_stack__("stack_b", stack_b);
-			ft_update_target(stack_a, stack_b);
-			ft_smart_move(stack_b, stack_a);
-			ft_pa(stack_b, stack_a, PRINT);
-		}
-		else if (ft_is_bottom_5(stack_b, stack_b->top->next) && 
-			stack_b->top->next->a_target_nod->price != 0)
-			ft_rr(stack_a, stack_b);
-		else 
-			ft_rb(stack_b, PRINT);
-	}
-	if (!ft_is_stack_sorted(stack_a))
-		sort_a(stack_a);
-	if (stack_b->size == 5)
-	{
-		ft_r_sort_five(stack_b, stack_a);
-		while (stack_b->size > 0)
-			ft_pa(stack_b, stack_a, PRINT);
+		ft_update_target(stack_a, stack_b);
+		ft_smart_move(stack_b, &bm);
+		ft_aplyy_moves(stack_b, stack_a, bm);
 	}
 	return (0);
 }
@@ -123,12 +109,9 @@ int	sort_stack(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->size <= 5)
 		return (sort_five_or_less(stack_a, stack_b));
 	push_quick_sort_b(stack_a, stack_b);
-	ft_memset(stack_b->top_five, 0, sizeof(t_top_five));
-	ft_get_top_5_nod(stack_b);
-	ft_memset(stack_b->bottom_five, 0, sizeof(t_bottom_five));
-	ft_get_bottom_5_nod(stack_b);
-	ft_update_target(stack_a, stack_b);
 	push_quick_sort_a(stack_b, stack_a);
+	if (!ft_is_stack_sorted(stack_a))
+		sort_a(stack_a);
 	return (0);
 }
 
