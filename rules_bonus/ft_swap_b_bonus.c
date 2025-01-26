@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap_b.c                                        :+:      :+:    :+:   */
+/*   ft_swap_b_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:55:56 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 15:54:31 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:01:49 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker_bonus.h"
 
 int	ft_sb(t_stack *stack_b, int print)
 {
@@ -32,5 +32,5 @@ int	ft_sb(t_stack *stack_b, int print)
 		stack_b->bottom = tmp_1_nod_b;
 	if (print)
 		write(1, "sb\n", 3);
-	return (ft_get_stk_info(stack_b));
+	return (0);
 }

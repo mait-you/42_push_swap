@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate_a_b.c                                    :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 21:11:37 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 10:14:01 by mait-you         ###   ########.fr       */
+/*   Created: 2025/01/24 10:44:05 by mait-you          #+#    #+#             */
+/*   Updated: 2025/01/24 10:49:31 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-int	ft_rr(t_stack *stack_a, t_stack *stack_b)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	write(1, "rr\n", 3);
-	return (ft_ra(stack_a, !PRINT) || ft_rb(stack_b, !PRINT));
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == (const char)reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }

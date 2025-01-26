@@ -6,7 +6,7 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 20:09:42 by mait-you          #+#    #+#              #
-#    Updated: 2025/01/18 10:30:08 by mait-you         ###   ########.fr        #
+#    Updated: 2025/01/26 09:27:39 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,33 +14,60 @@
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
 RM			:= rm -rf
+AR			:= ar rcs
+
+### dirs
+SRC_DIR		:= srcs
+UTILS_DIR	:= utils
+RULES_DIR	:= rules
+SORTING_DIR	:= sorting
+BONU_S_DIR	:= srcs_bonus
+UTILS_B_DIR	:= utils_bonus
+RULES_B_DIR	:= rules_bonus
+LIBFT_DIR	:= libft
+OBJS_DIR	:= obj
 
 ### Executable Name
 NAME		:= push_swap
+BONUS		:= checker
 
-### Libraries
-LIBFT_DIR	:= libft
-PRINTF_DIR	:= ft_printf
 LIBFT		:= $(LIBFT_DIR)/libft.a
-FT_PRINTF	:= $(PRINTF_DIR)/libftprintf.a
 
 ### Source Files
-RULES		:= rules/ft_push_a.c rules/ft_push_b.c \
-			rules/ft_swap_a.c rules/ft_swap_b.c rules/ft_swap_a_b.c \
-			rules/ft_rotate_a.c rules/ft_rotate_b.c rules/ft_rotate_a_b.c \
-			rules/ft_reverse_rotate_a.c rules/ft_reverse_rotate_b.c \
-			rules/ft_reverse_rotate_a_b.c
+LIBFT_SRCS	:= $(LIBFT_DIR)/ft_isalpha.c $(LIBFT_DIR)/ft_isdigit.c $(LIBFT_DIR)/ft_isalnum.c $(LIBFT_DIR)/ft_isascii.c \
+			$(LIBFT_DIR)/ft_isprint.c $(LIBFT_DIR)/ft_strlen.c $(LIBFT_DIR)/ft_memset.c $(LIBFT_DIR)/ft_bzero.c $(LIBFT_DIR)/ft_memcpy.c $(LIBFT_DIR)/ft_memmove.c \
+			$(LIBFT_DIR)/ft_strlcpy.c $(LIBFT_DIR)/ft_strlcat.c $(LIBFT_DIR)/ft_toupper.c $(LIBFT_DIR)/ft_tolower.c $(LIBFT_DIR)/ft_strchr.c $(LIBFT_DIR)/ft_strrchr.c \
+			$(LIBFT_DIR)/ft_strncmp.c $(LIBFT_DIR)/ft_memchr.c $(LIBFT_DIR)/ft_memcmp.c $(LIBFT_DIR)/ft_strnstr.c $(LIBFT_DIR)/ft_atoi.c $(LIBFT_DIR)/ft_calloc.c \
+			$(LIBFT_DIR)/ft_strdup.c $(LIBFT_DIR)/ft_substr.c $(LIBFT_DIR)/ft_strjoin.c $(LIBFT_DIR)/ft_strtrim.c $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_itoa.c \
+			$(LIBFT_DIR)/ft_strmapi.c $(LIBFT_DIR)/ft_striteri.c  $(LIBFT_DIR)/ft_strcspn.c
 
-UTILS		:= utils/p_s_utils.c utils/p_s_top_five.c utils/p_s_new.c \
-			utils/p_s_get_utils.c utils/p_s_get_2_utils.c utils/p_s_bottom_five.c
+RULES		:= $(RULES_DIR)/ft_push_a.c $(RULES_DIR)/ft_push_b.c \
+			$(RULES_DIR)/ft_swap_a.c $(RULES_DIR)/ft_swap_b.c $(RULES_DIR)/ft_swap_a_b.c \
+			$(RULES_DIR)/ft_rotate_a.c $(RULES_DIR)/ft_rotate_b.c $(RULES_DIR)/ft_rotate_a_b.c \
+			$(RULES_DIR)/ft_reverse_rotate_a.c $(RULES_DIR)/ft_reverse_rotate_b.c \
+			$(RULES_DIR)/ft_reverse_rotate_a_b.c
 
-SORTING		:= sorting/sorting_five.c sorting/r_sorting_five.c
+UTILS		:= $(UTILS_DIR)/p_s_utils.c $(UTILS_DIR)/p_s_utils_2.c $(UTILS_DIR)/p_s_top_five.c \
+			$(UTILS_DIR)/p_s_new.c $(UTILS_DIR)/p_s_get_utils.c $(UTILS_DIR)/p_s_get_2_utils.c 
 
-SRCS		:= push_swap.c algorithm.c $(RULES) $(UTILS) $(SORTING)
+SORTING		:= $(SORTING_DIR)/sorting_five.c $(SORTING_DIR)/r_sorting_five.c $(SORTING_DIR)/sort_ten.c
+
+SRCS		:= $(SRC_DIR)/push_swap.c $(SRC_DIR)/algorithm.c $(RULES) $(UTILS) $(SORTING)
+
+BONUS_RULES		:= $(RULES_B_DIR)/ft_push_a_bonus.c $(RULES_B_DIR)/ft_push_b_bonus.c \
+			$(RULES_B_DIR)/ft_swap_a_bonus.c $(RULES_B_DIR)/ft_swap_b_bonus.c $(RULES_B_DIR)/ft_swap_a_b_bonus.c \
+			$(RULES_B_DIR)/ft_rotate_a_bonus.c $(RULES_B_DIR)/ft_rotate_b_bonus.c $(RULES_B_DIR)/ft_rotate_a_b_bonus.c \
+			$(RULES_B_DIR)/ft_reverse_rotate_a_bonus.c $(RULES_B_DIR)/ft_reverse_rotate_b_bonus.c \
+			$(RULES_B_DIR)/ft_reverse_rotate_a_b_bonus.c
+
+BONUS_UTILS	:= $(UTILS_B_DIR)/checker_utils_bonus.c $(UTILS_B_DIR)/checker_cleanup_bonus.c $(UTILS_B_DIR)/checker_new_bonus.c $(UTILS_B_DIR)/get_next_line_bonus.c
+
+BONUS_SRCS	:= $(BONU_S_DIR)/checker_bonus.c $(BONUS_UTILS) $(BONUS_RULES)
 
 ### Object Files
-OBJS_DIR	:= obj
 OBJS		:= $(SRCS:%.c=$(OBJS_DIR)/%.o)
+LIBFT_OBJS	:= $(LIBFT_SRCS:%.c=$(OBJS_DIR)/%.o)
+BONUS_OBJS	:= $(BONUS_SRCS:%.c=$(OBJS_DIR)/%.o)
 
 ### Colors and Formatting
 RESET		:= \033[0m
@@ -58,21 +85,59 @@ UP			:= \033[F
 ### Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(RED)$(BOLD)$(NAME) $(GREEN)compiled successfully!$(RESET)"
 
-$(LIBFT):
+$(LIBFT): $(LIBFT_OBJS)
+	@$(AR) $(LIBFT) $(LIBFT_OBJS)
 	@echo "$(CYAN)Building libft ...$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR)
-	@echo "$(CYAN)╰─ Built $(PURPLE)$(BOLD)$(LIBFT)$(RESET)"
+	@echo "$(CYAN)╚═ Built $(PURPLE)$(BOLD)$(LIBFT)$(RESET)"
 
-$(FT_PRINTF):
-	@echo "$(CYAN)Building ft_printf ...$(RESET)"
-	@$(MAKE) -C $(PRINTF_DIR)
-	@echo "$(CYAN)╰─ Built $(PURPLE)$(BOLD)$(FT_PRINTF)$(RESET)"
+# libft Object file compilation rules
+$(OBJS_DIR)/$(LIBFT_DIR)/%.o: $(LIBFT_DIR)/%.c $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
 
-$(OBJS_DIR)/%.o: %.c push_swap.h | $(OBJS_DIR) # order-only dependency
+# push_swap $(SRC_DIR) Object file compilation rules
+$(OBJS_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# push_swap $(UTILS_DIR) Object file compilation rules
+$(OBJS_DIR)/$(UTILS_DIR)/%.o: $(UTILS_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# push_swap $(RULES_DIR) Object file compilation rules
+$(OBJS_DIR)/$(RULES_DIR)/%.o: $(RULES_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# push_swap $(SORTING_DIR) Object file compilation rules
+$(OBJS_DIR)/$(SORTING_DIR)/%.o: $(SORTING_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# checker $(BONU_S_DIR) Object file compilation rules
+$(OBJS_DIR)/$(BONU_S_DIR)/%.o: $(BONU_S_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# checker $(UTILS_B_DIR) Object file compilation rules
+$(OBJS_DIR)/$(UTILS_B_DIR)/%.o: $(UTILS_B_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+# checker $(RULES_B_DIR) Object file compilation rules
+$(OBJS_DIR)/$(RULES_B_DIR)/%.o: $(RULES_B_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
@@ -80,18 +145,19 @@ $(OBJS_DIR)/%.o: %.c push_swap.h | $(OBJS_DIR) # order-only dependency
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
+bonus: $(BONUS)
+
+$(BONUS): $(BONUS_OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(BONUS)
+	@echo "$(RED)$(BOLD)$(BONUS) $(GREEN)compiled successfully!$(RESET)"
+
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
-	@$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS_DIR) $(LIBFT)
 	@echo "$(RED)Cleaned object files.$(RESET)"
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
-	@$(RM) $(NAME)
-	@echo "$(RED)$(UP)Cleaned object files and $(PURPLE)$(BOLD)$(LIBFT)$(RESET)$(RED), \
-	$(PURPLE)$(BOLD)$(FT_PRINTF)$(RESET)$(RED), $(RED)$(BOLD)$(NAME)$(RESET)"
+	@$(RM) $(NAME) $(BONUS)
+	@echo "$(RED)$(UP)Cleaned object files and $(PURPLE)$(BOLD)$(LIBFT)$(RESET)$(RED), $(RED)$(BOLD)$(NAME)$(RESET)"
 
 re: fclean all
 

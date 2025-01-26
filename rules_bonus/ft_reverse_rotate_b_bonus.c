@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reverse_rotate_b.c                              :+:      :+:    :+:   */
+/*   ft_reverse_rotate_b_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:21:55 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 15:53:33 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:01:27 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker_bonus.h"
 
 int	ft_rrb(t_stack *stack_b, int print)
 {
@@ -29,5 +29,5 @@ int	ft_rrb(t_stack *stack_b, int print)
 	stack_b->top = tmp_1_nod_a;
 	if (print)
 		write(1, "rrb\n", 4);
-	return (ft_get_stk_info(stack_b));
+	return (0);
 }

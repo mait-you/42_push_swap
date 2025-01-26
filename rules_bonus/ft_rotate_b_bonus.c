@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate_a_b.c                                    :+:      :+:    :+:   */
+/*   ft_rotate_b_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 21:11:37 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 10:14:01 by mait-you         ###   ########.fr       */
+/*   Created: 2025/01/10 20:54:34 by mait-you          #+#    #+#             */
+/*   Updated: 2025/01/25 10:01:37 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker_bonus.h"
 
-int	ft_rr(t_stack *stack_a, t_stack *stack_b)
+int	ft_rb(t_stack *stack_b, int print)
 {
-	write(1, "rr\n", 3);
-	return (ft_ra(stack_a, !PRINT) || ft_rb(stack_b, !PRINT));
+	t_node	*tmp_nod;
+
+	if (stack_b->size < 2)
+		return (1);
+	tmp_nod = stack_b->top;
+	stack_b->top = stack_b->top->next;
+	stack_b->top->prev = NULL;
+	stack_b->bottom->next = tmp_nod;
+	tmp_nod->prev = stack_b->bottom;
+	tmp_nod->next = NULL;
+	stack_b->bottom = tmp_nod;
+	if (print)
+		write(1, "rb\n", 3);
+	return (0);
 }

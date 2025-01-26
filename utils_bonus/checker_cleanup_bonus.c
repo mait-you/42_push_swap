@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_s_utils.c                                        :+:      :+:    :+:   */
+/*   checker_cleanup_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 10:14:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 14:36:14 by mait-you         ###   ########.fr       */
+/*   Created: 2025/01/26 08:49:20 by mait-you          #+#    #+#             */
+/*   Updated: 2025/01/26 09:28:14 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker_bonus.h"
 
 void	free_nod(t_stack *stack)
 {
@@ -26,8 +26,23 @@ void	free_nod(t_stack *stack)
 		free(tmp_nod);
 		tmp_nod = next;
 	}
-	free(stack->top_five);
 	free(stack);
+}
+
+void	free_instructions(t_instruct *instructions)
+{
+	t_instruct	*tmp_instruct;
+	t_instruct	*next_instruct;
+
+	if (!instructions)
+		return ;
+	tmp_instruct = instructions;
+	while (tmp_instruct)
+	{
+		next_instruct = tmp_instruct->next;
+		free(tmp_instruct);
+		tmp_instruct = next_instruct;
+	}
 }
 
 void	free_args(char **args)
@@ -40,37 +55,15 @@ void	free_args(char **args)
 	free(args);
 }
 
-int	ft_is_stack_sorted(t_stack *stack_a)
+void	error_cleanup(t_stack *stack_a, t_stack *stack_b, \
+	t_instruct *instructions)
 {
-	t_node	*tmp;
-
-	tmp = stack_a->top;
-	while (tmp)
-	{
-		if (tmp->next)
-		{
-			if (tmp->num > tmp->next->num)
-				return (0);
-		}
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-int	sort_a(t_stack *stack_a)
-{
-	t_node	*tmp_nod;
-	int		price;
-	int		direction;
-
-	tmp_nod = ft_get_smallest_nod(stack_a);
-	price = tmp_nod->price;
-	direction = tmp_nod->direction;
-	if (direction == -1)
-		while (price-- > 0)
-			ft_rra(stack_a, PRINT);
-	else if (direction == 1)
-		while (price-- > 0)
-			ft_ra(stack_a, PRINT);
-	return (0);
+	if (stack_a)
+		free_nod(stack_a);
+	if (stack_b)
+		free_nod(stack_b);
+	if (instructions)
+		free_instructions(instructions);
+	write(2, "Error\n", 6);
+	exit(1);
 }

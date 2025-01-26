@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:18:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 09:40:12 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:31:10 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_stack	*ft_new_stk(void)
 {
 	t_stack			*new_stk;
 	t_top_five		*top_five;
-	// t_bottom_five	*bottom_five;
 
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
@@ -65,9 +64,7 @@ t_stack	*ft_new_stk(void)
 		exit(1);
 	}
 	top_five = ft_new_top_five();
-	// bottom_five = ft_new_bottom_five();
 	new_stk->top_five = top_five;
-	// new_stk->bottom_five = bottom_five;
 	return (new_stk);
 }
 

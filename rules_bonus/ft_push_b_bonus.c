@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_b.c                                        :+:      :+:    :+:   */
+/*   ft_push_b_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:02:48 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/22 11:28:04 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:01:18 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker_bonus.h"
 
 int	ft_pb(t_stack *stack_a, t_stack *stack_b, int print)
 {
@@ -35,5 +35,5 @@ int	ft_pb(t_stack *stack_a, t_stack *stack_b, int print)
 	stack_b->size++;
 	if (print)
 		write(1, "pb\n", 3);
-	return (ft_get_stk_info(stack_a) || ft_get_stk_info(stack_b));
+	return (0);
 }

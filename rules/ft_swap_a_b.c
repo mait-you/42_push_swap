@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 20:17:07 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 21:59:44 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:14:04 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("ss\n");
-	return (ft_sa(stack_a, 0) || ft_sb(stack_b, 0));
+	write(1, "ss\n", 3);
+	return (ft_sa(stack_a, !PRINT) || ft_sb(stack_b, !PRINT));
 }

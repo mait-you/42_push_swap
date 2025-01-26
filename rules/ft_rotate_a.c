@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 20:26:44 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 21:58:45 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:53:50 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	ft_ra(t_stack *stack_a, int print)
 	tmp_nod->next = NULL;
 	stack_a->bottom = tmp_nod;
 	if (print)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 	return (ft_get_stk_info(stack_a));
 }

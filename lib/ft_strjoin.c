@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate_a_b.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 21:11:37 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 10:14:01 by mait-you         ###   ########.fr       */
+/*   Created: 2024/10/23 15:19:57 by mait-you          #+#    #+#             */
+/*   Updated: 2025/01/23 06:23:00 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-int	ft_rr(t_stack *stack_a, t_stack *stack_b)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	write(1, "rr\n", 3);
-	return (ft_ra(stack_a, !PRINT) || ft_rb(stack_b, !PRINT));
+	char	*ptr;
+	int		i;
+	int		j;
+
+	if (!s1)
+		s1 = ft_strdup("");
+	if (!s2)
+		return (NULL);
+	ptr = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		ptr[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		ptr[j++] = s2[i++];
+	ptr[j] = '\0';
+	free((char *)s1);
+	return (ptr);
 }

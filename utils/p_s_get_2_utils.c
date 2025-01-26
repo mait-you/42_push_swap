@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:07:04 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 22:31:51 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:28:53 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_node	*ft_get_biggest_nod(t_stack *stack)
 	return (biggest_nod);
 }
 
-t_node	*ft_get_middle_nod(t_stack *stack)
+t_node	*ft_get_middle_nod(t_stack *stack, int spacing)
 {
 	t_node	*tmp_nod_1;
 	t_node	*tmp_nod_2;
@@ -63,7 +63,7 @@ t_node	*ft_get_middle_nod(t_stack *stack)
 				smaller_count++;
 			tmp_nod_2 = tmp_nod_2->next;
 		}
-		if (smaller_count == stack->middle_pos - 1)
+		if (smaller_count == stack->middle_pos - spacing)
 			return (middle_node = tmp_nod_1);
 		tmp_nod_1 = tmp_nod_1->next;
 	}
