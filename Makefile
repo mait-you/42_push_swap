@@ -24,7 +24,7 @@ SORTING_DIR	:= sorting
 BONU_S_DIR	:= srcs_bonus
 UTILS_B_DIR	:= utils_bonus
 RULES_B_DIR	:= rules_bonus
-LIBFT_DIR	:= libft
+LIBFT_DIR	:= lib
 OBJS_DIR	:= obj
 
 ### Executable Name
