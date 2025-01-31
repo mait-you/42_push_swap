@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:30:06 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 11:58:34 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:58:38 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	sort_ten(t_stack *stack_a, t_stack *stack_b)
 	{
 		ft_memset(stack_a->top_five, 0, sizeof(t_top_five));
 		ft_get_top_5_nod(stack_a);
-		if (ft_is_top_5(stack_a, stack_a->top))
+		if (!ft_is_top_5(stack_a, stack_a->top))
 			ft_pb(stack_a, stack_b, PRINT);
 		else
 			ft_ra(stack_a, PRINT);

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:47:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/26 09:29:09 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:18:16 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*ft_new_nod(int data)
 	new_nod = (t_node *)ft_calloc(1, sizeof(t_node));
 	if (!new_nod)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	new_nod->num = data;
@@ -33,7 +33,7 @@ t_stack	*ft_new_stk(void)
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	return (new_stk);
@@ -46,7 +46,7 @@ t_instruct	*ft_new_instruct(char *instruct)
 	new_instruct = (t_instruct *)ft_calloc(1, sizeof(t_instruct));
 	if (!new_instruct)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	instruct[ft_strcspn(instruct, "\n")] = 0;

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:18:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 14:31:10 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:17:40 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*ft_new_nod(int data)
 	new_nod = (t_node *)ft_calloc(1, sizeof(t_node));
 	if (!new_nod)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	new_nod->num = data;
@@ -33,7 +33,7 @@ t_top_five	*ft_new_top_five(void)
 	new_top_five = (t_top_five *)ft_calloc(1, sizeof(t_top_five));
 	if (!new_top_five)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	return (new_top_five);
@@ -46,7 +46,7 @@ t_best_moves	*ft_new_best_moves(void)
 	new_best_moves = (t_best_moves *)ft_calloc(1, sizeof(t_best_moves));
 	if (!new_best_moves)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	return (new_best_moves);
@@ -60,7 +60,7 @@ t_stack	*ft_new_stk(void)
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
 	{
-		write(2, "Error: Memory allocation failed\n", 33);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	top_five = ft_new_top_five();

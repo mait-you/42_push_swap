@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:48:13 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 11:59:17 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:46:22 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_push_middle(t_stack *stack_a, t_stack *stack_b)
 	while (1)
 	{
 		middle_nod = ft_get_middle_nod(stack_a, spacing);
-		if (middle_nod->price < (stack_a->size / 2) / 2)
+		if (middle_nod->price < stack_a->middle_pos / 2)
 			break ;
 		spacing++;
 	}
@@ -82,7 +82,7 @@ int	push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 	pivot = stack_b->top;
 	while (stack_a->size > 5)
 	{
-		if (ft_is_top_5(stack_a, stack_a->top))
+		if (!ft_is_top_5(stack_a, stack_a->top))
 		{
 			ft_pb(stack_a, stack_b, PRINT);
 			if (pivot->num < stack_b->top->num)

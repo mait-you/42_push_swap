@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:02:34 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/20 11:38:09 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:45:31 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int	ft_get_a_target(t_node *tmp_nod, t_stack *stack_a)
 int	ft_is_top_5(t_stack *stack, t_node *nod)
 {
 	if (!stack || !stack->top || !stack->top_five)
-		return (1);
+		return (0);
 	if (nod == stack->top_five->one || nod == stack->top_five->two
 		|| nod == stack->top_five->three || nod == stack->top_five->four
 		|| nod == stack->top_five->five)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 // int	ft_is_bottom_5(t_stack *stack, t_node *nod)
