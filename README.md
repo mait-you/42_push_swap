@@ -19,12 +19,22 @@ The available operations for this project are:
 - `rrr`: `rra` and `rrb` at the same time.
 
 # Performance
-- I use my own tester :
-- 
+I use my own tester :
+1. for 100 number:
+<div align="center">  
+  <img width="704" alt="Screen Shot 2025-02-01 at 3 43 48 PM" src="https://github.com/user-attachments/assets/2c2a0dcc-a6c2-46c3-9bc1-bf5991c88b9e" />
+</div>
+
+3. for 500 number:
+<div align="center">
+  <img width="707" alt="Screen Shot 2025-02-01 at 3 21 53 PM" src="https://github.com/user-attachments/assets/5139d561-ede7-43b6-a3a6-00c8a32a2e24" />
+</div>
+
 
 # Push_Swap Algorithm
 
 ## Overview of Sorting Approach
 The implementation uses different sorting strategies based on the input size, with specialized functions for handling 3, 4, 5, and up to 10 numbers. 
+
 
 
