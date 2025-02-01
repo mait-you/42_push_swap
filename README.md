@@ -90,5 +90,3 @@ Given initial stack state → Final state (operations used):
 ## Contributing
 Feel free to submit issues and enhancement requests!
 
-## License
-[Your License Here]
