@@ -24,11 +24,11 @@ The project allows the following stack manipulation operations:
 
 </div>
 
-## Push Swap Algorithm
+# Push Swap Algorithm
 
 This project implements various sorting algorithms optimized for stack operations. The algorithm selection adapts based on the input size to ensure optimal performance and minimal operations.
 
-### Small Sets (≤5 elements)
+## Sort ≤5 elements
 A specialized sorting approach is used for small sets:
 
 1. **Five Elements (`ft_sort_five`):**
@@ -44,16 +44,36 @@ A specialized sorting approach is used for small sets:
    - Moves the largest number to the bottom
    - final comparison and swap of top elements
 
-### Medium Sets (≤10 elements)
+## Sort ≤10 elements
 For sets up to 10 elements:
 
-1. **Initial Distribution:**
-   - Push numbers to stack B that are not in the top 5 values of stack A
+1. Push numbers to stack B that are not in the top 5 values of stack A
 
 2. **Dual Stack Sorting:**
-   - Sort stack A using the small set algorithm
-   - Use a reverse sorting algorithm for stack B
+   - Sort stack A using the Sort ≤5 elements algorithm
+   - Use a reverse Sort ≤5 elements algorithm for stack B
    - Merge sorted elements back into stack A
+
+## Sort >10 elements
+Sorting Steps
+1. **Initial Distribution**
+   - Push numbers to stack B that are not in the top 5 values of stack A
+   - Apply Sort ≤5 elements algorithm to stack A
+
+2. **Element Targeting**
+   - For each node in stack B:
+     - Identify nearest larger number in stack A
+     - Identify the moves to go to the larger number in stack A
+     - Calculate total moves
+
+3. **Move Optimization**
+   - Analyze cumulative move costs for each B node
+   - Select node with minimum total movement cost
+   - Apply total minimal cost rotation
+
+4. **Final Positioning**
+   - Once stack B is empty
+   - Rotate stack A to position smallest element at top
 
 ## Performance Results
 
@@ -67,6 +87,3 @@ For sets up to 10 elements:
   <img width="500" alt="Screen Shot 2025-02-01 at 3 21 53 PM" src="https://github.com/user-attachments/assets/5139d561-ede7-43b6-a3a6-00c8a32a2e24" />
 </div>
 
-
-## Contributing
-Contributions are welcome! Please feel free to submit issues or enhancement requests.
