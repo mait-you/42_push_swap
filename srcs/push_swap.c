@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:27 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/05 15:15:14 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:23:17 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 	int		j;
 
 	i = 1;
+	while (i < ac)
 	{
 		tmp_args = ft_split(av[i], ' ');
 		if (!tmp_args || tmp_args[0] == 0)

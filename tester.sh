@@ -99,7 +99,7 @@ generate_numbers() {
 test_push_swap() {
     local numbers=$1
     local steps=$(./push_swap $numbers | wc -l)
-    local result=$(./push_swap $numbers | ./checker_Mac $numbers)
+    local result=$(./push_swap $numbers | ./$CHECKER $numbers)
     
     if [ "$result" != "OK" ]; then
         echo -e "\n${RED}❌ Failed test case:${RESET}"
