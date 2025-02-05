@@ -35,7 +35,6 @@ I use my own tester :
 This project implements various sorting algorithms optimized for stack operations. The algorithm selection adapts based on the input size to ensure optimal performance and minimal operations.
 
 ## Sorting Five
-
 for '<= 5' size: i use 3 functions
 - **in *ft_sort_five* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_four*.
 - **in *ft_sort_four* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_three*.
@@ -54,10 +53,27 @@ int	ft_sort_three(t_stack *stack_a)
 	return (1);
 }
 ```
+and in end i push back the tow smalles number to stack a.
 
 ## Sorting Ten
 
-
-
-
+i push to stack b only the numbers the is not top five numbers in stack a, then i use **Sorting Five algorithm** to sort the nembers of stack a and **Reverse Sorting Five algorithm** to sort  the numbers of stack b in reverse.
+- **in *ft_r_sort_five* function**: i searched for the biggest number in stack a and i pushed to stack b, then i call *ft_r_sort_four*.
+- **in *ft_r_sort_four* function**: i searched for the biggest number in stack a and i pushed to stack b, then i call *ft_r_sort_three*.
+- **in *ft_r_sort_three* function**: i use same conditions to searched about the smalle number and move it to bottom, then i check the top two.
+```c
+int	ft_r_sort_three(t_stack *stack_b)
+{
+	if (stack_b->top->num < stack_b->top->next->num
+		&& stack_b->top->num < stack_b->top->next->next->num)
+		ft_rb(stack_b, PRINT);
+	else if (stack_b->top->next->num < stack_b->top->num
+		&& stack_b->top->next->num < stack_b->top->next->next->num)
+		ft_rrb(stack_b, PRINT);
+	if (stack_b->top->num < stack_b->top->next->num)
+		ft_sb(stack_b, PRINT);
+	return (1);
+}
+```
+and in end i push back the numbers of stack b number to stack a.
 
