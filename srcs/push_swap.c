@@ -6,13 +6,13 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:27 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 11:59:51 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:15:14 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// Main sorting function
+// main sorting function
 int	sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_b || stack_a->size <= 1)
@@ -21,8 +21,11 @@ int	sort_stack(t_stack *stack_a, t_stack *stack_b)
 		return (sort_five_or_less(stack_a, stack_b));
 	if (stack_a->size <= 10)
 		return (sort_ten(stack_a, stack_b));
-	push_quick_sort_b(stack_a, stack_b);
-	push_quick_sort_a(stack_b, stack_a);
+	if (stack_a->size > 10)
+	{
+		push_quick_sort_b(stack_a, stack_b);
+		push_back_sort_a(stack_b, stack_a);
+	}
 	return (0);
 }
 
@@ -61,7 +64,6 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 	int		j;
 
 	i = 1;
-	while (i < ac)
 	{
 		tmp_args = ft_split(av[i], ' ');
 		if (!tmp_args || tmp_args[0] == 0)

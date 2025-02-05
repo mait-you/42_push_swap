@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:13:39 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/17 22:34:51 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/02 15:23:07 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	ft_update_top_five(t_stack *stack, t_node *biggest_nod, int i)
 {
-	if (!stack || !stack->top_five || !biggest_nod)
-		return (1);
 	if (i == 0)
 		stack->top_five->one = biggest_nod;
 	else if (i == 1)
@@ -33,8 +31,6 @@ static int	ft_find_top_five(t_stack *stack, t_node **biggest_nod)
 {
 	t_node	*tmp_nod;
 
-	if (!stack || !stack->top)
-		return (0);
 	tmp_nod = stack->top;
 	while (tmp_nod)
 	{
@@ -59,6 +55,7 @@ int	ft_get_top_5_nod(t_stack *stack)
 
 	if (!stack || !stack->top || !stack->top_five)
 		return (-1);
+	ft_memset(stack->top_five, 0, sizeof(t_top_five));
 	i = 0;
 	while (i < 5)
 	{

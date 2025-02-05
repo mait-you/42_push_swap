@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:03:22 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 12:07:42 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:01:35 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 		while (tmp_args[j])
 		{
 			error = 1;
-			ft_add_nod_to_stk(stack_a, ft_new_nod(\
-								ft_atoi(tmp_args[j], &error)));
+			ft_add_nod_to_stk(stack_a, \
+			ft_new_nod(ft_atoi(tmp_args[j], &error)));
 			if (error)
 				return (free_args(tmp_args), 1);
 			j++;
@@ -92,13 +92,21 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 static int	initialize_stacks(int ac, char **av, t_stack **stack_a, \
 	t_stack **stack_b)
 {
+	t_instruct	*instructions_tmp;
+
+	instructions_tmp = NULL;
 	*stack_a = ft_new_stk();
 	*stack_b = ft_new_stk();
 	if (ft_get_and_chek_args(ac, av, *stack_a) || (*stack_a)->size <= 0)
-		return (1);
+		return (0);
 	if (ft_is_stack_sorted(*stack_a))
+	{
+		get_instructions(&instructions_tmp);
+		if (instructions_tmp)
+			error_cleanup(*stack_a, *stack_b, &instructions_tmp);
 		return (1);
-	return (0);
+	}
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -106,25 +114,25 @@ int	main(int ac, char **av)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_instruct	*instructions;
+	t_instruct	*instruct_tmp;
 
 	if (ac < 2)
 		return (1);
-	if (initialize_stacks(ac, av, &stack_a, &stack_b))
+	if (!initialize_stacks(ac, av, &stack_a, &stack_b))
 		error_cleanup(stack_a, stack_b, NULL);
 	instructions = NULL;
 	if (get_instructions(&instructions) == -1)
-		error_cleanup(stack_a, stack_b, instructions);
-	while (instructions)
+		error_cleanup(stack_a, stack_b, NULL);
+	instruct_tmp = instructions;
+	while (instruct_tmp)
 	{
-		aplyy_instructions(instructions->instruct, stack_a, stack_b);
-		instructions = instructions->next;
+		aplyy_instructions(instruct_tmp->instruct, stack_a, stack_b);
+		instruct_tmp = instruct_tmp->next;
 	}
 	if (ft_is_stack_sorted(stack_a) && stack_b->size == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free_nod(stack_a);
-	free_nod(stack_b);
-	free_instructions(instructions);
-	return (0);
+	free_instructions(&instructions);
+	return (free_nod(stack_a), free_nod(stack_b), 0);
 }

@@ -6,7 +6,7 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 20:09:42 by mait-you          #+#    #+#              #
-#    Updated: 2025/01/26 10:03:56 by mait-you         ###   ########.fr        #
+#    Updated: 2025/02/03 10:46:10 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SORTING		:= $(SORTING_DIR)/sorting_five.c $(SORTING_DIR)/r_sorting_five.c $(SORT
 
 SRCS		:= $(SRC_DIR)/push_swap.c $(SRC_DIR)/algorithm.c $(RULES) $(UTILS) $(SORTING)
 
-BONUS_RULES		:= $(RULES_B_DIR)/ft_push_a_bonus.c $(RULES_B_DIR)/ft_push_b_bonus.c \
+BONUS_RULES	:= $(RULES_B_DIR)/ft_push_a_bonus.c $(RULES_B_DIR)/ft_push_b_bonus.c \
 			$(RULES_B_DIR)/ft_swap_a_bonus.c $(RULES_B_DIR)/ft_swap_b_bonus.c $(RULES_B_DIR)/ft_swap_a_b_bonus.c \
 			$(RULES_B_DIR)/ft_rotate_a_bonus.c $(RULES_B_DIR)/ft_rotate_b_bonus.c $(RULES_B_DIR)/ft_rotate_a_b_bonus.c \
 			$(RULES_B_DIR)/ft_reverse_rotate_a_bonus.c $(RULES_B_DIR)/ft_reverse_rotate_b_bonus.c \

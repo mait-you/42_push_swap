@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:33:18 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 14:37:07 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:13:38 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	ft_update_target(t_stack *stack_a, t_stack *stack_b)
 			tmp_bm->rra_count = tmp_nod->a_target_nod->price;
 		double_r(tmp_bm);
 		bm_total(tmp_bm);
+		if (tmp_nod->best_move)
+			free(tmp_nod->best_move);
 		tmp_nod->best_move = tmp_bm;
 		tmp_bm = NULL;
 		tmp_nod = tmp_nod->next;

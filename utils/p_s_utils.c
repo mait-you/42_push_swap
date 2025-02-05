@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:14:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 14:36:14 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:14:55 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_nod(t_stack *stack)
 	{
 		next = tmp_nod->next;
 		free(tmp_nod);
+		if (tmp_nod->best_move)
+			free(tmp_nod->best_move);
 		tmp_nod = next;
 	}
 	free(stack->top_five);

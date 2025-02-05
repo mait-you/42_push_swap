@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:07:04 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/22 09:28:53 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:16:32 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_node	*ft_get_middle_nod(t_stack *stack, int spacing)
 	middle_node = tmp_nod_1;
 	while (tmp_nod_1)
 	{
-		smaller_count = 0;
+		smaller_count = 1;
 		tmp_nod_2 = stack->top;
 		while (tmp_nod_2)
 		{

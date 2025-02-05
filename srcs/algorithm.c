@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:48:13 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/31 10:46:22 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:09:49 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_aplyy_moves(t_stack *stack_b, t_stack *stack_a, t_best_moves *bm)
 		ft_ra(stack_a, PRINT);
 	while (bm->rra_count-- > 0)
 		ft_rra(stack_a, PRINT);
-	free(bm);
 	ft_pa(stack_b, stack_a, PRINT);
 	return (0);
 }
@@ -54,11 +53,12 @@ int	ft_push_middle(t_stack *stack_a, t_stack *stack_b)
 	int		i;
 	int		spacing;
 
-	spacing = 1;
+	spacing = 0;
 	while (1)
 	{
 		middle_nod = ft_get_middle_nod(stack_a, spacing);
-		if (middle_nod->price < stack_a->middle_pos / 2)
+		if (middle_nod->price <= stack_a->middle_pos / 2 \
+			&& !ft_is_top_5(stack_a, middle_nod))
 			break ;
 		spacing++;
 	}
@@ -76,7 +76,6 @@ int	push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*pivot;
 
-	ft_memset(stack_a->top_five, 0, sizeof(t_top_five));
 	ft_get_top_5_nod(stack_a);
 	ft_push_middle(stack_a, stack_b);
 	pivot = stack_b->top;
@@ -96,12 +95,13 @@ int	push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 	return (0);
 }
 
-int	push_quick_sort_a(t_stack *stack_b, t_stack *stack_a)
+int	push_back_sort_a(t_stack *stack_b, t_stack *stack_a)
 {
 	t_best_moves	*bm;
 
 	while (stack_b->size > 0)
 	{
+		bm = NULL;
 		ft_update_target(stack_a, stack_b);
 		ft_smart_move(stack_b, &bm);
 		ft_aplyy_moves(stack_b, stack_a, bm);

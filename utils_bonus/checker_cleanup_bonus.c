@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 08:49:20 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/26 09:28:14 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:35:02 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,18 @@ void	free_nod(t_stack *stack)
 	free(stack);
 }
 
-void	free_instructions(t_instruct *instructions)
+void	free_instructions(t_instruct **instructions)
 {
 	t_instruct	*tmp_instruct;
 	t_instruct	*next_instruct;
 
-	if (!instructions)
+	if (!(*instructions))
 		return ;
-	tmp_instruct = instructions;
+	tmp_instruct = *instructions;
 	while (tmp_instruct)
 	{
 		next_instruct = tmp_instruct->next;
+		free(tmp_instruct->instruct);
 		free(tmp_instruct);
 		tmp_instruct = next_instruct;
 	}
@@ -49,6 +50,8 @@ void	free_args(char **args)
 {
 	int	i;
 
+	if (!args)
+		return ;
 	i = 0;
 	while (args[i])
 		free(args[i++]);
@@ -56,13 +59,13 @@ void	free_args(char **args)
 }
 
 void	error_cleanup(t_stack *stack_a, t_stack *stack_b, \
-	t_instruct *instructions)
+	t_instruct **instructions)
 {
 	if (stack_a)
 		free_nod(stack_a);
 	if (stack_b)
 		free_nod(stack_b);
-	if (instructions)
+	if (instructions && *instructions)
 		free_instructions(instructions);
 	write(2, "Error\n", 6);
 	exit(1);

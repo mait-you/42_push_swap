@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/26 10:04:53 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:45:27 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 // includes
 # include "lib/libft.h"
 # include <unistd.h>
-# include <stdlib.h>
 # include <limits.h>
-# include <stdint.h>
+# include <stdio.h>
 
 # ifndef PRINT
 #  define PRINT 1
@@ -91,8 +90,8 @@ int				sort_a(t_stack *stack_a);
 int				double_r(t_best_moves *bm);
 
 // algorithm
-int				push_quick_sort_a(t_stack *stack_b, t_stack *stack_a);
 int				push_quick_sort_b(t_stack *stack_a, t_stack *stack_b);
+int				push_back_sort_a(t_stack *stack_b, t_stack *stack_a);
 int				ft_push_middle(t_stack *stack_a, t_stack *stack_b);
 int				ft_aplyy_moves(t_stack *stack_b, t_stack *stack_a, \
 	t_best_moves *bm);
@@ -122,7 +121,7 @@ int				ft_ra(t_stack *stack_a, int print);
 int				ft_rb(t_stack *stack_b, int print);
 int				ft_rr(t_stack *stack_a, t_stack *stack_b);
 
-// sorting algorithm function declarations
+// main sorting declarations
 int				sort_stack(t_stack *stack_a, t_stack *stack_b);
 
 #endif

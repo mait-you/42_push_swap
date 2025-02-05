@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 08:47:06 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/25 11:58:42 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:26:59 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ int	ft_sort_four(t_stack *stack_a, t_stack *stack_b)
 int	ft_sort_five(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*smallest_nod;
-	int		middle;
 	int		i;
 
-	middle = (stack_a->size / 2) + 1;
 	smallest_nod = ft_get_smallest_nod(stack_a);
 	i = smallest_nod->price;
 	if (smallest_nod->direction == -1)

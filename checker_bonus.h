@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/26 10:04:56 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/02 10:36:35 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 // includes
 # include "lib/libft.h"
 # include <unistd.h>
-# include <stdlib.h>
 # include <limits.h>
-# include <libc.h>
 
 # ifndef PRINT
 #  define PRINT 0
@@ -59,7 +57,7 @@ typedef struct s_stack
 char		*get_next_line(int fd);
 void		free_nod(t_stack *stack);
 void		free_args(char **args);
-void		free_instructions(t_instruct *instructions);
+void		free_instructions(t_instruct **instructions);
 int			ft_is_stack_sorted(t_stack *stack_a);
 t_node		*ft_new_nod(int data);
 t_stack		*ft_new_stk(void);
@@ -69,7 +67,7 @@ int			ft_add_nod_to_stk(t_stack *stack, t_node *new_nod);
 int			add_new_instruct(t_instruct **instructions, \
 	t_instruct *new_instruct);
 void		error_cleanup(t_stack *stack_a, t_stack *stack_b, \
-	t_instruct *instructions);
+	t_instruct **instructions);
 int			aplyy_instructions(char *instruct, t_stack *stack_a, \
 	t_stack *stack_b);
 
