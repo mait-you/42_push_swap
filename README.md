@@ -31,49 +31,90 @@ I use my own tester :
 
 # Push_Swap Algorithm
 
-## Overview
-This project implements various sorting algorithms optimized for stack operations. The algorithm selection adapts based on the input size to ensure optimal performance and minimal operations.
+## Algorithm Strategy
+The implementation uses different approaches depending on the input size:
+- For sets of ≤5 elements: Uses a specialized small-set sorting algorithm
+- For sets of ≤10 elements: Employs a hybrid approach with selective pushing and reverse sorting
+- For larger sets: 
 
-## Sorting Five
-for '<= 5' size: i use 3 functions
-- **in *ft_sort_five* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_four*.
-- **in *ft_sort_four* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_three*.
-- **in *ft_sort_three* function**: i use same conditions to searched about the biggest number and move it to bottom, then i check the top two.
-```c
-int	ft_sort_three(t_stack *stack_a)
-{
-	if (stack_a->top->num > stack_a->top->next->num
-		&& stack_a->top->num > stack_a->top->next->next->num)
-		ft_ra(stack_a, PRINT);
-	else if (stack_a->top->next->num > stack_a->top->num
-		&& stack_a->top->next->num > stack_a->top->next->next->num)
-		ft_rra(stack_a, PRINT);
-	if (stack_a->top->num > stack_a->top->next->num)
-		ft_sa(stack_a, PRINT);
-	return (1);
-}
-```
-and in end i push back the tow smalles number to stack a.
+## Implementation Details
 
-## Sorting Ten
+### Sorting Small Sets (≤5 elements)
+The algorithm employs a three-tiered approach for sorting up to 5 elements:
 
-i push to stack b only the numbers the is not top five numbers in stack a, then i use **Sorting Five algorithm** to sort the nembers of stack a and **Reverse Sorting Five algorithm** to sort  the numbers of stack b in reverse.
-- **in *ft_r_sort_five* function**: i searched for the biggest number in stack a and i pushed to stack b, then i call *ft_r_sort_four*.
-- **in *ft_r_sort_four* function**: i searched for the biggest number in stack a and i pushed to stack b, then i call *ft_r_sort_three*.
-- **in *ft_r_sort_three* function**: i use same conditions to searched about the smalle number and move it to bottom, then i check the top two.
-```c
-int	ft_r_sort_three(t_stack *stack_b)
-{
+1. **Five Elements (`ft_sort_five`):**
+   - Identifies and pushes the smallest number to stack B
+   - call `ft_sort_four` on remaining elements
+
+2. **Four Elements (`ft_sort_four`):**
+   - Identifies and pushes the smallest number to stack B
+   - Recursively calls `ft_sort_three` on remaining elements
+
+3. **Three Elements (`ft_sort_three`):**
+   ```c
+   int ft_sort_three(t_stack *stack_a)
+   {
+       if (stack_a->top->num > stack_a->top->next->num
+           && stack_a->top->num > stack_a->top->next->next->num)
+           ft_ra(stack_a, PRINT);
+       else if (stack_a->top->next->num > stack_a->top->num
+           && stack_a->top->next->num > stack_a->top->next->next->num)
+           ft_rra(stack_a, PRINT);
+       if (stack_a->top->num > stack_a->top->next->num)
+           ft_sa(stack_a, PRINT);
+       return (1);
+   }
+   ```
+   - Identifies the largest number and moves it to the bottom
+   - final comparison and swap of the top two elements if needed
+
+After sorting, the algorithm pushes back the smaller numbers from stack B to stack A in the correct order.
+
+### Sorting Medium Sets (≤10 elements)
+For sets up to 10 elements, the algorithm:
+
+1. **Initial Distribution:**
+   - Pushes numbers to stack B that are not in the top 5 values of stack A
+
+2. **Dual Stack Sorting:**
+   1. Applies [Sorting Small Sets](#sorting-small-sets-(≤5-elements)) sorting algorithm to stack A
+   2. Uses a reverse sorting algorithm for stack B:
+
+      1- **Five Elements (`ft_r_sort_five`):**
+   	- Identifies and pushes the biggest number to stack B
+   	- call `ft_sort_four` on remaining elements
+
+	2. **Four Elements (`ft_r_sort_four`):**
+   	- Identifies and pushes the biggest number to stack B
+  	 - Recursively calls `ft_sort_three` on remaining elements
+
+	3. **Three Elements (`ft_r_sort_three`):**
+	```c
+	int ft_r_sort_three(t_stack *stack_b)
+	{
 	if (stack_b->top->num < stack_b->top->next->num
-		&& stack_b->top->num < stack_b->top->next->next->num)
+ 	     && stack_b->top->num < stack_b->top->next->next->num)
 		ft_rb(stack_b, PRINT);
 	else if (stack_b->top->next->num < stack_b->top->num
-		&& stack_b->top->next->num < stack_b->top->next->next->num)
+	     && stack_b->top->next->num < stack_b->top->next->next->num)
 		ft_rrb(stack_b, PRINT);
 	if (stack_b->top->num < stack_b->top->next->num)
-		ft_sb(stack_b, PRINT);
+	     ft_sb(stack_b, PRINT);
 	return (1);
-}
-```
-and in end i push back the numbers of stack b number to stack a.
+	}
+	```
+ 	- Identifies the smalle number and moves it to the bottom
+	- final comparison and swap of the top two elements if needed
+
+   After sorting, the algorithm pushes back the biggest numbers from stack B to stack A in the correct order.
+
+3. **Final Merge:**
+   - Merges the sorted elements from stack B back into stack A
+
+
+
+## Contributing
+Feel free to submit issues and enhancement requests. All contributions are welcome!
+
+
 
