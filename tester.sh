@@ -15,6 +15,7 @@ TESTS_COUNT=${1:-10}
 NUMBERS_COUNT=${2:-100}
 RANGE_MIN=${3:-1}
 RANGE_MAX=${4:-1000}
+CHECKER=""
 
 # ASCII Art
 print_header() {
@@ -52,9 +53,21 @@ print_separator() {
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 }
 
+# Find available checker
+find_checker() {
+    local checkers=("./checker_Mac" "./checker" "./checker_linux")
+    for checker in "${checkers[@]}"; do
+        if [ -x "$checker" ]; then
+            CHECKER="$checker"
+            return 0
+        fi
+    done
+    return 1
+}
+
 # Check if required programs exist
 check_requirements() {
-    local requirements=("python3" "./push_swap" "./checker_Mac")
+    local requirements=("python3" "./push_swap")
     echo -e "\n${BOLD}${BLUE}🔍 Checking Requirements...${RESET}"
     for cmd in "${requirements[@]}"; do
         echo -ne "  ⚙️  Checking for $cmd..."
@@ -65,6 +78,16 @@ check_requirements() {
         fi
         echo -e " ${GREEN}✔${RESET}"
     done
+    
+    echo -ne "  ⚙️  Checking for checker..."
+    if ! find_checker; then
+        echo -e " ${RED}✘${RESET}"
+        echo -e "${RED}Error: checker is required but not found${RESET}"
+        exit 1
+    else
+        echo -e " ${GREEN}✔${RESET}"
+        echo -e "     ${CYAN}→ Using checker: $CHECKER${RESET}"
+    fi
 }
 
 # Generate random numbers using Python
