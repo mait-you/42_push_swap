@@ -36,5 +36,28 @@ This project implements various sorting algorithms optimized for stack operation
 
 ## Sorting Five
 
-if size of stack a is '<= 5':
-- I searched for the smalle number in stack a and i pushed to stack b 
+for '<= 5' size: i use 3 functions
+- **in *ft_sort_five* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_four*.
+- **in *ft_sort_four* function**: i searched for the smalle number in stack a and i pushed to stack b, then i call *ft_sort_three*.
+- **in *ft_sort_three* function**: i use same conditions to searched about the biggest number and move it to bottom, then i check the top two.
+```c
+int	ft_sort_three(t_stack *stack_a)
+{
+	if (stack_a->top->num > stack_a->top->next->num
+		&& stack_a->top->num > stack_a->top->next->next->num)
+		ft_ra(stack_a, PRINT);
+	else if (stack_a->top->next->num > stack_a->top->num
+		&& stack_a->top->next->num > stack_a->top->next->next->num)
+		ft_rra(stack_a, PRINT);
+	if (stack_a->top->num > stack_a->top->next->num)
+		ft_sa(stack_a, PRINT);
+	return (1);
+}
+```
+
+## Sorting Ten
+
+
+
+
+
