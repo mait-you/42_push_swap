@@ -57,21 +57,22 @@ For sets up to 10 elements:
 ## Sort >10 elements
 Sorting Steps
 1. **Initial Distribution**
+   - get the middle and taket as pivot
    - Push numbers to stack B that are not in the top 5 values of stack A
    - Apply Sort ≤5 elements algorithm to stack A
 
-2. **Element Targeting**
+3. **Element Targeting**
    - For each node in stack B:
      - Identify nearest larger number in stack A
      - Identify the moves to go to the larger number in stack A
      - Calculate total moves
 
-3. **Move Optimization**
+4. **Move Optimization**
    - Analyze cumulative move costs for each B node
    - Select node with minimum total movement cost
    - Apply total minimal cost rotation
 
-4. **Final Positioning**
+5. **Final Positioning**
    - Once stack B is empty
    - Rotate stack A to position smallest element at top
 
