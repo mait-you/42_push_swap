@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:48:13 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/04 10:09:49 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:09:10 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,12 @@ int	ft_aplyy_moves(t_stack *stack_b, t_stack *stack_a, t_best_moves *bm)
 	return (0);
 }
 
-int	ft_push_middle(t_stack *stack_a, t_stack *stack_b)
-{
-	t_node	*middle_nod;
-	int		i;
-	int		spacing;
-
-	spacing = 0;
-	while (1)
-	{
-		middle_nod = ft_get_middle_nod(stack_a, spacing);
-		if (middle_nod->price <= stack_a->middle_pos / 2 \
-			&& !ft_is_top_5(stack_a, middle_nod))
-			break ;
-		spacing++;
-	}
-	i = middle_nod->price;
-	if (middle_nod->direction == -1)
-		while (i-- > 0)
-			ft_rra(stack_a, PRINT);
-	else if (middle_nod->direction == 1)
-		while (i-- > 0)
-			ft_ra(stack_a, PRINT);
-	return (ft_pb(stack_a, stack_b, PRINT));
-}
-
 int	push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*pivot;
 
 	ft_get_top_5_nod(stack_a);
-	ft_push_middle(stack_a, stack_b);
-	pivot = stack_b->top;
+	pivot = ft_get_middle_nod(stack_a, 0);
 	while (stack_a->size > 5)
 	{
 		if (!ft_is_top_5(stack_a, stack_a->top))

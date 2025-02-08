@@ -6,7 +6,7 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 20:09:42 by mait-you          #+#    #+#              #
-#    Updated: 2025/02/03 10:46:10 by mait-you         ###   ########.fr        #
+#    Updated: 2025/02/08 09:41:20 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,9 @@ BONUS		:= checker
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
 ### Source Files
-LIBFT_SRCS	:= $(LIBFT_DIR)/ft_isalpha.c $(LIBFT_DIR)/ft_isdigit.c $(LIBFT_DIR)/ft_isalnum.c $(LIBFT_DIR)/ft_isascii.c \
-			$(LIBFT_DIR)/ft_isprint.c $(LIBFT_DIR)/ft_strlen.c $(LIBFT_DIR)/ft_memset.c $(LIBFT_DIR)/ft_bzero.c $(LIBFT_DIR)/ft_memcpy.c $(LIBFT_DIR)/ft_memmove.c \
-			$(LIBFT_DIR)/ft_strlcpy.c $(LIBFT_DIR)/ft_strlcat.c $(LIBFT_DIR)/ft_toupper.c $(LIBFT_DIR)/ft_tolower.c $(LIBFT_DIR)/ft_strchr.c $(LIBFT_DIR)/ft_strrchr.c \
-			$(LIBFT_DIR)/ft_strncmp.c $(LIBFT_DIR)/ft_memchr.c $(LIBFT_DIR)/ft_memcmp.c $(LIBFT_DIR)/ft_strnstr.c $(LIBFT_DIR)/ft_atoi.c $(LIBFT_DIR)/ft_calloc.c \
-			$(LIBFT_DIR)/ft_strdup.c $(LIBFT_DIR)/ft_substr.c $(LIBFT_DIR)/ft_strjoin.c $(LIBFT_DIR)/ft_strtrim.c $(LIBFT_DIR)/ft_split.c $(LIBFT_DIR)/ft_itoa.c \
-			$(LIBFT_DIR)/ft_strmapi.c $(LIBFT_DIR)/ft_striteri.c  $(LIBFT_DIR)/ft_strcspn.c
+LIBFT_SRCS	:= $(LIBFT_DIR)/ft_strlen.c $(LIBFT_DIR)/ft_memset.c $(LIBFT_DIR)/ft_strncmp.c $(LIBFT_DIR)/ft_atoi.c \
+			$(LIBFT_DIR)/ft_calloc.c $(LIBFT_DIR)/ft_strdup.c $(LIBFT_DIR)/ft_substr.c $(LIBFT_DIR)/ft_split.c \
+			$(LIBFT_DIR)/ft_strcspn.c $(LIBFT_DIR)/ft_strchr.c $(LIBFT_DIR)/ft_strjoin.c
 
 RULES		:= $(RULES_DIR)/ft_push_a.c $(RULES_DIR)/ft_push_b.c \
 			$(RULES_DIR)/ft_swap_a.c $(RULES_DIR)/ft_swap_b.c $(RULES_DIR)/ft_swap_a_b.c \

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/03 10:45:27 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:13:57 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "lib/libft.h"
 # include <unistd.h>
 # include <limits.h>
-# include <stdio.h>
 
 # ifndef PRINT
 #  define PRINT 1
