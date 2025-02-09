@@ -79,12 +79,12 @@ Sorting Steps
 ## Performance Results
 
 ### 100 Numbers
-<div align="center">  
-  <img width="881" alt="Screen Shot 2025-02-09 at 10 53 27 AM" src="https://github.com/user-attachments/assets/445a0fd4-77f2-4bf9-abb4-ad7a17bf1ed8" />
+<div align="center">
+  <img width="500" alt="Screen Shot 2025-02-09 at 10 53 27 AM" src="https://github.com/user-attachments/assets/445a0fd4-77f2-4bf9-abb4-ad7a17bf1ed8" />
 </div>
 
 ### 500 Numbers
 <div align="center"
-   
+   <img width="500" alt="Screen Shot 2025-02-09 at 4 37 51 PM" src="https://github.com/user-attachments/assets/a0a5d185-8c90-47ac-9f73-f8310d26d64d" />
 </div>
 
