@@ -80,11 +80,11 @@ Sorting Steps
 
 ### 100 Numbers
 <div align="center">  
-  <img width="500" alt="Screen Shot 2025-02-01 at 3 43 48 PM" src="https://github.com/user-attachments/assets/2c2a0dcc-a6c2-46c3-9bc1-bf5991c88b9e" />
+  <img width="881" alt="Screen Shot 2025-02-09 at 10 53 27 AM" src="https://github.com/user-attachments/assets/445a0fd4-77f2-4bf9-abb4-ad7a17bf1ed8" />
 </div>
 
 ### 500 Numbers
-<div align="center">
-  <img width="500" alt="Screen Shot 2025-02-01 at 3 21 53 PM" src="https://github.com/user-attachments/assets/5139d561-ede7-43b6-a3a6-00c8a32a2e24" />
+<div align="center"
+   
 </div>
 
