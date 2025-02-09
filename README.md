@@ -84,7 +84,7 @@ Sorting Steps
 </div>
 
 ### 500 Numbers
-<div align="center"
+<div align="center">
    <img width="500" alt="Screen Shot 2025-02-09 at 4 37 51 PM" src="https://github.com/user-attachments/assets/a0a5d185-8c90-47ac-9f73-f8310d26d64d" />
 </div>
 
