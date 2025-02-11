@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:33:18 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/04 10:13:38 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:32:33 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_update_target(t_stack *stack_a, t_stack *stack_b)
 	while (tmp_nod)
 	{
 		ft_get_a_target(tmp_nod, stack_a);
-		tmp_bm = ft_new_best_moves();
+		tmp_bm = ft_new_best_moves(stack_a, stack_b);
 		if (tmp_nod->direction == 1)
 			tmp_bm->rb_count = tmp_nod->price;
 		else

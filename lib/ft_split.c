@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:58:35 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 14:29:49 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:29:07 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	**free_memory(char **ptr, int i)
 {
 	int	j;
 
+	if (!ptr)
+		return (NULL);
 	j = 0;
 	while (j < i)
 		free(ptr[j++]);

@@ -6,7 +6,7 @@
 #    By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 20:09:42 by mait-you          #+#    #+#              #
-#    Updated: 2025/02/08 09:41:20 by mait-you         ###   ########.fr        #
+#    Updated: 2025/02/11 10:37:08 by mait-you         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ RM			:= rm -rf
 AR			:= ar rcs
 
 ### dirs
-SRC_DIR		:= srcs
-UTILS_DIR	:= utils
-RULES_DIR	:= rules
-SORTING_DIR	:= sorting
-BONU_S_DIR	:= srcs_bonus
-UTILS_B_DIR	:= utils_bonus
-RULES_B_DIR	:= rules_bonus
+SRC_DIR		:= mandatory/srcs
+UTILS_DIR	:= mandatory/utils
+RULES_DIR	:= mandatory/rules
+SORTING_DIR	:= mandatory/sorting
+BONU_S_DIR	:= bonus/srcs_bonus
+UTILS_B_DIR	:= bonus/utils_bonus
+RULES_B_DIR	:= bonus/rules_bonus
 LIBFT_DIR	:= lib
 OBJS_DIR	:= obj
 
@@ -97,56 +97,26 @@ $(OBJS_DIR)/$(LIBFT_DIR)/%.o: $(LIBFT_DIR)/%.c $(LIBFT_DIR)/libft.h | $(OBJS_DIR
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
 
-# push_swap $(SRC_DIR) Object file compilation rules
-$(OBJS_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+# mandatory Object file compilation rules
+$(OBJS_DIR)/mandatory/%.o: mandatory/%.c mandatory/push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# push_swap $(UTILS_DIR) Object file compilation rules
-$(OBJS_DIR)/$(UTILS_DIR)/%.o: $(UTILS_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# push_swap $(RULES_DIR) Object file compilation rules
-$(OBJS_DIR)/$(RULES_DIR)/%.o: $(RULES_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# push_swap $(SORTING_DIR) Object file compilation rules
-$(OBJS_DIR)/$(SORTING_DIR)/%.o: $(SORTING_DIR)/%.c push_swap.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# checker $(BONU_S_DIR) Object file compilation rules
-$(OBJS_DIR)/$(BONU_S_DIR)/%.o: $(BONU_S_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# checker $(UTILS_B_DIR) Object file compilation rules
-$(OBJS_DIR)/$(UTILS_B_DIR)/%.o: $(UTILS_B_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-# checker $(RULES_B_DIR) Object file compilation rules
-$(OBJS_DIR)/$(RULES_B_DIR)/%.o: $(RULES_B_DIR)/%.c checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
-
-$(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
 
 bonus: $(BONUS)
 
 $(BONUS): $(BONUS_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(BONUS)
 	@echo "$(RED)$(BOLD)$(BONUS) $(GREEN)compiled successfully!$(RESET)"
+
+# bonus Object file compilation rules
+$(OBJS_DIR)/bonus/%.o: bonus/%.c bonus/checker_bonus.h $(LIBFT_DIR)/libft.h | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Compiling: $(WHITE)$<$(RESET)"
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
 clean:
 	@$(RM) $(OBJS_DIR) $(LIBFT)

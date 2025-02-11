@@ -6,47 +6,52 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:18:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/30 17:17:40 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:45:00 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_node	*ft_new_nod(int data)
+t_node	*ft_new_nod(int data, t_stack *stack_a, t_stack *stack_b)
 {
 	t_node		*new_nod;
 
 	new_nod = (t_node *)ft_calloc(1, sizeof(t_node));
 	if (!new_nod)
 	{
-		write(2, "Error\n", 6);
+		free_nod(stack_a);
+		free_nod(stack_b);
+		write(2, "Memory not allocated\n", 22);
 		exit(1);
 	}
 	new_nod->num = data;
 	return (new_nod);
 }
 
-t_top_five	*ft_new_top_five(void)
+t_top_five	*ft_new_top_five(t_stack *new_stk)
 {
 	t_top_five	*new_top_five;
 
 	new_top_five = (t_top_five *)ft_calloc(1, sizeof(t_top_five));
 	if (!new_top_five)
 	{
-		write(2, "Error\n", 6);
+		free_nod(new_stk);
+		write(2, "Memory not allocated\n", 22);
 		exit(1);
 	}
 	return (new_top_five);
 }
 
-t_best_moves	*ft_new_best_moves(void)
+t_best_moves	*ft_new_best_moves(t_stack *stack_a, t_stack *stack_b)
 {
 	t_best_moves	*new_best_moves;
 
 	new_best_moves = (t_best_moves *)ft_calloc(1, sizeof(t_best_moves));
 	if (!new_best_moves)
 	{
-		write(2, "Error\n", 6);
+		free_nod(stack_a);
+		free_nod(stack_b);
+		write(2, "Memory not allocated\n", 22);
 		exit(1);
 	}
 	return (new_best_moves);
@@ -55,16 +60,14 @@ t_best_moves	*ft_new_best_moves(void)
 t_stack	*ft_new_stk(void)
 {
 	t_stack			*new_stk;
-	t_top_five		*top_five;
 
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
 	{
-		write(2, "Error\n", 6);
+		write(2, "Memory not allocated\n", 22);
 		exit(1);
 	}
-	top_five = ft_new_top_five();
-	new_stk->top_five = top_five;
+	new_stk->top_five = ft_new_top_five(new_stk);
 	return (new_stk);
 }
 

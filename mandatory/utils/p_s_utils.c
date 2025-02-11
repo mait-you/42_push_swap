@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:14:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/04 10:14:55 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:27:11 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	free_args(char **args)
 {
 	int	i;
 
+	if (!args)
+		return ;
 	i = 0;
 	while (args[i])
 		free(args[i++]);

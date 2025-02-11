@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/02 10:36:35 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:13:35 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CHECKER_BONUS_H
 
 // includes
-# include "lib/libft.h"
+# include "../lib/libft.h"
 # include <unistd.h>
 # include <limits.h>
 

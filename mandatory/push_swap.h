@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/08 20:13:57 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:42:50 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 // includes
-# include "lib/libft.h"
+# include "../lib/libft.h"
 # include <unistd.h>
 # include <limits.h>
 
@@ -69,9 +69,9 @@ typedef struct s_stack
 // utility function declarations
 void			free_nod(t_stack *stack);
 void			free_args(char **args);
-t_node			*ft_new_nod(int data);
-t_top_five		*ft_new_top_five(void);
-t_best_moves	*ft_new_best_moves(void);
+t_node			*ft_new_nod(int data, t_stack *stack_a, t_stack *stack_b);
+t_top_five		*ft_new_top_five(t_stack *new_stk);
+t_best_moves	*ft_new_best_moves(t_stack *stack_a, t_stack *stack_b);
 t_stack			*ft_new_stk(void);
 int				ft_add_nod_to_stk(t_stack *stack, t_node *new_nod);
 int				ft_is_stack_sorted(t_stack *stack_a);
