@@ -6,13 +6,14 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:03:22 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/06 10:01:26 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:54:52 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker_bonus.h"
 
-static int	get_instructions(t_instruct **instructions)
+static int	get_instructions(t_instruct **instructions, t_stack *stack_a, \
+	t_stack *stack_b)
 {
 	t_instruct	*new_instruct;
 	char		*tmp;
@@ -20,7 +21,7 @@ static int	get_instructions(t_instruct **instructions)
 	tmp = get_next_line(0);
 	while (tmp)
 	{
-		new_instruct = ft_new_instruct(tmp);
+		new_instruct = ft_new_instruct(tmp, stack_a, stack_b);
 		add_new_instruct(instructions, new_instruct);
 		if (ft_check_instruct(new_instruct))
 		{
@@ -60,7 +61,7 @@ static int	ft_chek_args_rpt(t_stack *stack_a)
 	return (0);
 }
 
-static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
+static int	ft_get_and_chek_args(int ac, char **av, t_stack *a, t_stack *b)
 {
 	char	**tmp_args;
 	int		error;
@@ -71,14 +72,14 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 	while (i < ac)
 	{
 		tmp_args = ft_split(av[i], ' ');
-		if (!tmp_args || tmp_args[0] == 0)
+		if (!tmp_args || !tmp_args[0])
 			return (free_args(tmp_args), 1);
 		j = 0;
 		while (tmp_args[j])
 		{
 			error = 1;
-			ft_add_nod_to_stk(stack_a, \
-			ft_new_nod(ft_atoi(tmp_args[j], &error)));
+			ft_add_nod_to_stk(a, ft_new_nod(\
+								ft_atoi(tmp_args[j], &error), a, b));
 			if (error)
 				return (free_args(tmp_args), 1);
 			j++;
@@ -86,7 +87,7 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *stack_a)
 		free_args(tmp_args);
 		i++;
 	}
-	return (ft_chek_args_rpt(stack_a));
+	return (ft_chek_args_rpt(a));
 }
 
 static int	initialize_stacks(int ac, char **av, t_stack **stack_a, \
@@ -97,11 +98,12 @@ static int	initialize_stacks(int ac, char **av, t_stack **stack_a, \
 	instructions_tmp = NULL;
 	*stack_a = ft_new_stk();
 	*stack_b = ft_new_stk();
-	if (ft_get_and_chek_args(ac, av, *stack_a) || (*stack_a)->size <= 0)
+	if (ft_get_and_chek_args(ac, av, *stack_a, *stack_b) || \
+		(*stack_a)->size <= 0)
 		return (0);
 	if (ft_is_stack_sorted(*stack_a))
 	{
-		get_instructions(&instructions_tmp);
+		get_instructions(&instructions_tmp, *stack_a, *stack_b);
 		if (instructions_tmp)
 			error_cleanup(*stack_a, *stack_b, &instructions_tmp);
 		return (1);
@@ -121,7 +123,7 @@ int	main(int ac, char **av)
 	if (!initialize_stacks(ac, av, &stack_a, &stack_b))
 		error_cleanup(stack_a, stack_b, NULL);
 	instructions = NULL;
-	if (get_instructions(&instructions) == -1)
+	if (get_instructions(&instructions, stack_a, stack_b) == -1)
 		error_cleanup(stack_a, stack_b, NULL);
 	instruct_tmp = instructions;
 	while (instruct_tmp)

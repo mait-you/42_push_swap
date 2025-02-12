@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/11 10:42:50 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:58:50 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,5 @@ int				ft_ss(t_stack *stack_a, t_stack *stack_b);
 int				ft_ra(t_stack *stack_a, int print);
 int				ft_rb(t_stack *stack_b, int print);
 int				ft_rr(t_stack *stack_a, t_stack *stack_b);
-
-// main sorting declarations
-int				sort_stack(t_stack *stack_a, t_stack *stack_b);
 
 #endif

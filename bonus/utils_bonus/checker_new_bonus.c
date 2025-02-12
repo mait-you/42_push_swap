@@ -6,19 +6,21 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:47:47 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/01 11:33:18 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:57:15 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker_bonus.h"
 
-t_node	*ft_new_nod(int data)
+t_node	*ft_new_nod(int data, t_stack *stack_a, t_stack *stack_b)
 {
 	t_node		*new_nod;
 
 	new_nod = (t_node *)ft_calloc(1, sizeof(t_node));
 	if (!new_nod)
 	{
+		free_nod(stack_a);
+		free_nod(stack_b);
 		write(2, "Error\n", 6);
 		exit(1);
 	}
@@ -39,13 +41,15 @@ t_stack	*ft_new_stk(void)
 	return (new_stk);
 }
 
-t_instruct	*ft_new_instruct(char *instruct)
+t_instruct	*ft_new_instruct(char *instruct, t_stack *stack_a, t_stack *stack_b)
 {
 	t_instruct			*new_instruct;
 
 	new_instruct = (t_instruct *)ft_calloc(1, sizeof(t_instruct));
 	if (!new_instruct)
 	{
+		free_nod(stack_a);
+		free_nod(stack_b);
 		write(2, "Error\n", 6);
 		exit(1);
 	}

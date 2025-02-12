@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/11 09:13:35 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:55:13 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ typedef struct s_stack
 }						t_stack;
 
 // utility function declarations
-char		*get_next_line(int fd);
 void		free_nod(t_stack *stack);
 void		free_args(char **args);
 void		free_instructions(t_instruct **instructions);
-int			ft_is_stack_sorted(t_stack *stack_a);
-t_node		*ft_new_nod(int data);
+t_node		*ft_new_nod(int data, t_stack *stack_a, t_stack *stack_b);
 t_stack		*ft_new_stk(void);
-t_instruct	*ft_new_instruct(char *instruct);
+t_instruct	*ft_new_instruct(char *instruct, t_stack *stack_a, \
+	t_stack *stack_b);
+int			ft_is_stack_sorted(t_stack *stack_a);
 int			ft_check_instruct(t_instruct *instruct);
 int			ft_add_nod_to_stk(t_stack *stack, t_node *new_nod);
 int			add_new_instruct(t_instruct **instructions, \
@@ -70,6 +70,7 @@ void		error_cleanup(t_stack *stack_a, t_stack *stack_b, \
 	t_instruct **instructions);
 int			aplyy_instructions(char *instruct, t_stack *stack_a, \
 	t_stack *stack_b);
+char		*get_next_line(int fd);
 
 // rules declarations
 int			ft_pa(t_stack *stack_b, t_stack *stack_a, int print);

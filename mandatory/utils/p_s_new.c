@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:18:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/11 10:45:00 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:56:48 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node	*ft_new_nod(int data, t_stack *stack_a, t_stack *stack_b)
 	{
 		free_nod(stack_a);
 		free_nod(stack_b);
-		write(2, "Memory not allocated\n", 22);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	new_nod->num = data;
@@ -36,7 +36,7 @@ t_top_five	*ft_new_top_five(t_stack *new_stk)
 	if (!new_top_five)
 	{
 		free_nod(new_stk);
-		write(2, "Memory not allocated\n", 22);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	return (new_top_five);
@@ -51,7 +51,7 @@ t_best_moves	*ft_new_best_moves(t_stack *stack_a, t_stack *stack_b)
 	{
 		free_nod(stack_a);
 		free_nod(stack_b);
-		write(2, "Memory not allocated\n", 22);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	return (new_best_moves);
@@ -64,7 +64,7 @@ t_stack	*ft_new_stk(void)
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
 	{
-		write(2, "Memory not allocated\n", 22);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	new_stk->top_five = ft_new_top_five(new_stk);

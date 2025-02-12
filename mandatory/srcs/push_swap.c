@@ -6,14 +6,14 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:27 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/11 10:44:10 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:58:10 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 // main sorting function
-int	sort_stack(t_stack *stack_a, t_stack *stack_b)
+static int	sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_b || stack_a->size <= 1)
 		return (1);
