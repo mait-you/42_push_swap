@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/12 09:58:50 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:33:54 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				ft_is_stack_sorted(t_stack *stack_a);
 int				ft_get_stk_info(t_stack *stack);
 t_node			*ft_get_smallest_nod(t_stack *stack);
 t_node			*ft_get_biggest_nod(t_stack *stack);
-t_node			*ft_get_middle_nod(t_stack *stack, int spacing);
+t_node			*ft_get_middle_nod(t_stack *stack);
 int				ft_get_top_5_nod(t_stack *stack);
 int				ft_is_top_5(t_stack *stack, t_node *nod);
 int				ft_get_f_target(t_node *tmp_nod, t_stack *stack_b, \

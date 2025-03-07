@@ -6,16 +6,15 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:27 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/12 09:58:10 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:20:34 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// main sorting function
 static int	sort_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_a || !stack_b || stack_a->size <= 1)
+	if (!stack_a || !stack_b || stack_a->size == 1)
 		return (1);
 	if (stack_a->size <= 5)
 		return (sort_five_or_less(stack_a, stack_b));
@@ -93,13 +92,22 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (1);
 	stack_a = ft_new_stk();
+	if (!stack_a)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	stack_b = ft_new_stk();
-	if (ft_get_and_chek_args(ac, av, stack_a, stack_b) || stack_a->size <= 0)
+	if (!stack_b)
+	{
+		free_nod(stack_a);
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	if (ft_get_and_chek_args(ac, av, stack_a, stack_b))
 		return (free_nod(stack_a), free_nod(stack_b),
 			write(2, "Error\n", 6), 1);
 	if (!ft_is_stack_sorted(stack_a))
 		sort_stack(stack_a, stack_b);
-	free_nod(stack_a);
-	free_nod(stack_b);
-	return (0);
+	return (free_nod(stack_a), free_nod(stack_b), 0);
 }

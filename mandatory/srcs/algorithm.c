@@ -52,7 +52,7 @@ int	push_quick_sort_b(t_stack *stack_a, t_stack *stack_b)
 	t_node	*pivot;
 
 	ft_get_top_5_nod(stack_a);
-	pivot = ft_get_middle_nod(stack_a, 0);
+	pivot = ft_get_middle_nod(stack_a);
 	while (stack_a->size > 5)
 	{
 		if (!ft_is_top_5(stack_a, stack_a->top))

@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:43:30 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/12 09:55:13 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:54:33 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_stack		*ft_new_stk(void);
 t_instruct	*ft_new_instruct(char *instruct, t_stack *stack_a, \
 	t_stack *stack_b);
 int			ft_is_stack_sorted(t_stack *stack_a);
-int			ft_check_instruct(t_instruct *instruct);
+int			ft_check_instruct(char *instruct);
 int			ft_add_nod_to_stk(t_stack *stack, t_node *new_nod);
 int			add_new_instruct(t_instruct **instructions, \
 	t_instruct *new_instruct);

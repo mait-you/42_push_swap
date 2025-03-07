@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:03:22 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/12 09:54:52 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:18:37 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	get_instructions(t_instruct **instructions, t_stack *stack_a, \
 	tmp = get_next_line(0);
 	while (tmp)
 	{
-		new_instruct = ft_new_instruct(tmp, stack_a, stack_b);
-		add_new_instruct(instructions, new_instruct);
-		if (ft_check_instruct(new_instruct))
+		if (ft_check_instruct(tmp) == 1)
 		{
 			free(tmp);
-			return (-1);
+			error_cleanup(stack_a, stack_b, instructions);
 		}
+		new_instruct = ft_new_instruct(tmp, stack_a, stack_b);
+		add_new_instruct(instructions, new_instruct);
 		free(tmp);
 		tmp = get_next_line(0);
 	}
@@ -93,21 +93,21 @@ static int	ft_get_and_chek_args(int ac, char **av, t_stack *a, t_stack *b)
 static int	initialize_stacks(int ac, char **av, t_stack **stack_a, \
 	t_stack **stack_b)
 {
-	t_instruct	*instructions_tmp;
-
-	instructions_tmp = NULL;
 	*stack_a = ft_new_stk();
-	*stack_b = ft_new_stk();
-	if (ft_get_and_chek_args(ac, av, *stack_a, *stack_b) || \
-		(*stack_a)->size <= 0)
-		return (0);
-	if (ft_is_stack_sorted(*stack_a))
+	if (!stack_a)
 	{
-		get_instructions(&instructions_tmp, *stack_a, *stack_b);
-		if (instructions_tmp)
-			error_cleanup(*stack_a, *stack_b, &instructions_tmp);
-		return (1);
+		write(2, "Error\n", 6);
+		exit(1);
 	}
+	*stack_b = ft_new_stk();
+	if (!stack_b)
+	{
+		free_nod(*stack_a);
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+	if (ft_get_and_chek_args(ac, av, *stack_a, *stack_b))
+		return (0);
 	return (1);
 }
 

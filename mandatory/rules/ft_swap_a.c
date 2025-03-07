@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:54:37 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/21 15:54:22 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:44:23 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_sa(t_stack *stack_a, int print)
 	if (stack_a->size < 2)
 		return (1);
 	tmp_1_nod_a = stack_a->top;
-	tmp_2_nod_a = tmp_1_nod_a->next;
+	tmp_2_nod_a = stack_a->top->next;
 	stack_a->top = tmp_2_nod_a;
 	tmp_2_nod_a->prev = NULL;
 	tmp_1_nod_a->next = tmp_2_nod_a->next;

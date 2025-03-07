@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 08:49:20 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/01 12:35:02 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:12:16 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_instructions(t_instruct **instructions)
 	t_instruct	*tmp_instruct;
 	t_instruct	*next_instruct;
 
-	if (!(*instructions))
+	if (!instructions || !(*instructions))
 		return ;
 	tmp_instruct = *instructions;
 	while (tmp_instruct)

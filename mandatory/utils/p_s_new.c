@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:18:53 by mait-you          #+#    #+#             */
-/*   Updated: 2025/02/11 14:56:48 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:20:13 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ t_stack	*ft_new_stk(void)
 
 	new_stk = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!new_stk)
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		return (NULL);
 	new_stk->top_five = ft_new_top_five(new_stk);
 	return (new_stk);
 }

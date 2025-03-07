@@ -6,7 +6,7 @@
 /*   By: mait-you <mait-you@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 08:45:17 by mait-you          #+#    #+#             */
-/*   Updated: 2025/01/26 09:30:39 by mait-you         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:46:40 by mait-you         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,32 @@ int	ft_is_stack_sorted(t_stack *stack_a)
 	return (1);
 }
 
-int	ft_check_instruct(t_instruct *instruct)
+int	ft_check_instruct(char *instruct)
 {
-	int		instruct_len;
-	char	*instruct_chr;
-
-	instruct_chr = instruct->instruct;
-	instruct_len = ft_strlen(instruct_chr);
-	if (instruct_len != 2 && instruct_len != 3)
-		return (1);
-	while (*instruct_chr)
-	{
-		if (!ft_strchr(RULES_LETTERS, *instruct_chr))
-			return (1);
-		instruct_chr++;
-	}
-	return (0);
+	instruct[ft_strcspn(instruct, "\n")] = 0;
+	if (!ft_strncmp(instruct, "pb", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "pa", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "sa", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "sb", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "ss", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "ra", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "rb", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "rr", 3))
+		return (0);
+	if (!ft_strncmp(instruct, "rra", 4))
+		return (0);
+	if (!ft_strncmp(instruct, "rrb", 4))
+		return (0);
+	if (!ft_strncmp(instruct, "rrr", 4))
+		return (0);
+	return (1);
 }
 
 int	ft_add_nod_to_stk(t_stack *stack, t_node *new_nod)
